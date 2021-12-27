@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 10:23:20 by hmokhtar          #+#    #+#             */
-/*   Updated: 2021/12/26 10:46:57 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:14:55 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *str, ...);
-void	ft_print(const char *str, va_list arg, int i);
-void	ft_putchar(int c);
-void	ft_putstr(char *s);
-void	ft_putnbr(int n);
-void	ft_puthexa(unsigned int nb);
-void	ft_put_hexa(unsigned int nb);
-void	ft_putptr(unsigned long long ptr);
-void	ft_putuns(unsigned int n);
+void	ft_putchar(int c, int *len);
+void	ft_putstr(char *s, int *len);
+void	ft_putnbr(int n, int *len);
+void	ft_puthexa(unsigned long nb, int *len);
+void	ft_put_hexa(unsigned int nb, int *len);
+void	ft_putptr(unsigned long ptr, int *len);
+void	ft_putuns(unsigned int n, int *len);
 
 #endif

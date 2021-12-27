@@ -6,70 +6,58 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 10:10:05 by hmokhtar          #+#    #+#             */
-/*   Updated: 2021/12/26 10:31:39 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:24:51 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_put_hexa(unsigned int nb)
+void	ft_put_hexa(unsigned int nb, int *len)
 {
 	char	*base;
 
 	base = "0123456789ABCDEF";
-	if (nb > 15)
+	if (nb >= 16)
 	{
-		ft_put_hexa(nb / 16);
-		ft_put_hexa(nb % 16);
+		ft_put_hexa((nb / 16), len);
+		ft_put_hexa((nb % 16), len);
 	}
-	if (nb <= 16)
-		ft_putchar(base[nb]);
+	else if (nb <= 16)
+		ft_putchar(base[nb], len);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str, int *len)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	if (!str)
+		ft_putstr("(null)", len);
+	else
 	{
-		ft_putchar(str[i]);
-		i++;
+		while (str[i])
+			ft_putchar(str[i++], len);
 	}
 }
 
-void	ft_putptr(unsigned long long ptr)
+void	ft_putptr(unsigned long ptr, int *len)
 {
-	int	len;
-
-	len = 0;
-	len += write(1, "0x", 2);
-	if (ptr == 0)
-		len += write(1, "0", 1);
-	else
-		ft_puthexa(ptr);
+	ft_putstr("0x", len);
+	ft_puthexa(ptr, len);
 }
 
-static unsigned int	ft_va(int n)
+void	ft_putuns(unsigned int n, int *len)
 {
-	if (n < 0)
-		return (n * (-1));
-	else
-		return (n);
-}
-
-void	ft_putuns(unsigned int n)
-{
-	unsigned int	num;
+	unsigned int	nb;
 
 	if (n < 0)
-		ft_putchar('-');
-	num = ft_va(n);
-	if (num >= 10)
 	{
-		ft_putuns(num / 10);
-		ft_putuns(num % 10);
+		nb = -n;
+		ft_putchar('-', len);
 	}
 	else
-		ft_putchar(num + '0');
+		nb = n;
+	if (nb > 9)
+		ft_putuns(nb / 10, len);
+	ft_putchar(nb % 10 + '0', len);
 }
