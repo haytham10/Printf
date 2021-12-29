@@ -1,7 +1,7 @@
 
 ## Printf
 
-![App Screenshot](https://github.com/haytham10/Printf/blob/main/Assets/printf.png?raw=true)
+![App Screenshot](https://github.com/haytham10/Printf/blob/main/Asstets/printf.png?raw=true)
 
 #### This project is pretty straightforward, I had to recode printf. Learning what it is and how to implement variadic functions.
 
